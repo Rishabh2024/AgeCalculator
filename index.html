@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Checker</title>
+  <style>
+    /* Styling for the app */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Age Checker</h1>
+    <label for="birthYear">Enter your birth year:</label>
+    <input type="number" id="birthYear" placeholder="e.g. 2000">
+    <button id="checkAgeButton">Check Age</button>
+
+    <div id="result">
+      <!-- The result will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    // JavaScript logic for calculating age and checking if the user can drive
+    document.getElementById('checkAgeButton').addEventListener('click', function() {
+      // Get the input value
+      const birthYear = document.getElementById('birthYear').value;
+      const currentYear = new Date().getFullYear(); // Get the current year
+
+      // Check if the user input is valid
+      if (birthYear && birthYear > 1900 && birthYear <= currentYear) {
+        // Calculate the age
+        const age = currentYear - birthYear;
+
+        // Use conditional operator (ternary) to check if the user can drive
+        const canDrive = (age >= 18) ? 'You are eligible to drive.' : 'You are not eligible to drive.';
+
+        // Display the result
+        document.getElementById('result').textContent = `You are ${age} years old. ${canDrive}`;
+      } else {
+        // Show an error message if the birth year is invalid
+        document.getElementById('result').textContent = 'Please enter a valid birth year.';
+      }
+    });
+  </script>
+</body>
+</html>
